@@ -79,6 +79,23 @@ xhr.send();
 ///////////////////////////////////////
 Print the country which uses US Dollars as currency.
 ///////////////////////////////////////////
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "https://restcountries.eu/rest/v2/all");
+xhr.onload = function () {
+  var t = JSON.parse(this.response);
+let result = (function (t) {
+  return (t.filter((odd) => {
+  if(odd.currencies[0].symbol=="$")
+  return odd;
+  }))
+  })(t);
+  console.log( result);
 
+};
+xhr.onerror = function () {
+  console.log("Error", this.statusText);
+};
+xhr.send();
+///////////////////////////////////////////////////
 
 
