@@ -1,0 +1,84 @@
+Solving problems using array functions on rest countries data.
+Get all the countries from Asia continent /region using Filter function
+////////////////////////////////////////////////////////////////////////////
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "https://restcountries.eu/rest/v2/all");
+xhr.onload = function () {
+  var t = JSON.parse(this.response);
+let result = (function (t) {
+  return (t.filter((odd) => {
+  if(odd.region=="Asia")
+  return odd;
+  }))
+  })(t);
+  console.log( result);
+
+};
+xhr.onerror = function () {
+  console.log("Error", this.statusText);
+};
+xhr.send();
+
+/////////////////////////////////////////////////////////
+Get all the countries with a population of less than 2 lakhs using Filter function
+//////////////////////////////////////////////////////
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "https://restcountries.eu/rest/v2/all");
+xhr.onload = function () {
+  var t = JSON.parse(this.response);
+let result = (function (t) {
+  return (t.filter((odd) => {
+  if(odd.population < 200000)
+  return odd;
+  }))
+  })(t);
+  console.log( result);
+
+};
+xhr.onerror = function () {
+  console.log("Error", this.statusText);
+};
+xhr.send();
+////////////////////////////////////////////////////
+Print the following details name, capital, flag using forEach function
+/////////////////////////////////////////////////
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "https://restcountries.eu/rest/v2/all");
+xhr.onload = function () {
+  var t = JSON.parse(this.response);
+var result=t.forEach(function(values){
+  console.log(values.name,values.capital,values.flag);
+})
+}
+xhr.onerror = function () {
+  console.log("Error", this.statusText);
+};
+xhr.send();
+
+/////////////////////////////////////////////////////////
+Print the total population of countries using reduce function
+///////////////////////////////////////////////////////////
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "https://restcountries.eu/rest/v2/all");
+xhr.onload = function () {
+  var t = JSON.parse(this.response);
+let result = (function (t) {
+  return (t.reduce((total,odd) => {
+  
+  return total+=odd.population;
+  }))
+  })(t);
+  console.log( result);
+
+};
+xhr.onerror = function () {
+  console.log("Error", this.statusText);
+};
+xhr.send();
+
+///////////////////////////////////////
+Print the country which uses US Dollars as currency.
+///////////////////////////////////////////
+
+
+
